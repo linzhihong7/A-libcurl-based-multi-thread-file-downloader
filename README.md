@@ -2,5 +2,5 @@
 用法:
 ```
 make
-/download_tool threadNum downloadUrl downloadPathAndFilename
+./download_tool threadNum downloadUrl downloadPathAndFilename
 ```
