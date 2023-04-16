@@ -4,10 +4,8 @@
 size_t WriteToFileCB(char* ptr, size_t size, size_t nmemb, void* userdata) {
     CurlData* curlData = static_cast<CurlData*>(userdata);
     size_t dataSize = size * nmemb;
-    for (size_t i = 0; i < dataSize; i++) {
-        *curlData->writeBuffer++ = ptr[i];
-    }
-    curl_easy_setopt(curlData->curl, CURLOPT_WRITEDATA, static_cast<void*>(curlData));
+    memcpy(curlData->writeBuffer, ptr, dataSize);
+    curlData->writeBuffer += dataSize;
     std::cout << "WriteToFileCB fileSize： " << dataSize << std::endl;
     return dataSize;
 }
